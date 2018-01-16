@@ -1,0 +1,30 @@
+<html>
+<head>
+        <meta charset="UTF-8">
+<title></title>
+<script language="javascript">
+    function cal()
+    {
+        var calTxtArr = [];
+        for (var i = 0, s = document.all.myContent.value; i < s.length; ++i)
+        {
+            var c = s.charAt(i);
+            calTxtArr[c] = calTxtArr[c] == null ? 1 : calTxtArr[c] + 1;
+        }
+        var bufferArr = [];
+        for (var c in calTxtArr)
+        {
+            bufferArr.push(c + ": " + calTxtArr[c]);
+        }
+        document.all.calTxt.value = bufferArr.join("\n");
+    }
+</script>
+</head>
+<body>
+<textarea rows= "5" cols = "40" name = "myContent"></textarea>
+<input type = "button" value = "计算" onclick = "cal()">
+<br><br>
+<textarea name = "calTxt" rows = "20" cols = "40" readonly>
+</textarea>
+</body>
+</html>

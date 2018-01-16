@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var str = 'jian r aa bb cc dd';
+    var n = 5;
+    str = str.replace(/\b[a-z]+\b/ig,function (kw) {
+        return kw + n++;
+    })
+
+    console.log(str);
+</script>
+</body>
+</html>

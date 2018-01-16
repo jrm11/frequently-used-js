@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body >
+<script>
+//    ie有效
+    window.onload = function () {
+        function winScreen() {
+            if (window.screen) {
+                var width = screen.availWidth || window.screen.availWidth;
+                var height = screen.availHeight ||window.screen.availHeight;
+                window.moveTo(0, 0);
+                window.resizeTo(width, height);
+            }
+        }
+
+        winScreen();
+    }
+</script>
+</body>
+</html>
+

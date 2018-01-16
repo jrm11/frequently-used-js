@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动态添加script</title>
+</head>
+
+<body>
+<div id="div"></div>
+<script>
+    window.onload = function () {
+        function addScript() {
+            var doc = document.getElementsByTagName('body')[0];
+            var ele = document.createElement('script');
+            ele.type = "text/javascript";
+            ele.src = "test.js";
+            doc.appendChild(ele);
+        }
+        addScript();
+    }
+</script>
+</body>
+</html>

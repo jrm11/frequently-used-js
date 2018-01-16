@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    .box-wrapper {
+        border: 5px solid #0099ff;
+    }
+    
+    .box {
+        float: left;
+        width: 100px;
+        height: 100px;
+        margin-left: 40px;
+        background: yellow;
+    }
+    
+    .clearfix:before,
+    .clearfix:after {
+        content: " ";
+        display: table;
+    }
+    
+    .clearfix:after {
+        clear: both;
+    }
+    
+    .clearfix {
+        *zoom: 1
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box-wrapper clearfix">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</body>
+
+</html>

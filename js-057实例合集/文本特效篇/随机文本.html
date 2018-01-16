@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机文本</title>
+    <link rel="stylesheet" href="../common/common.css">
+
+</head>
+<body>
+<h1>文本篇--随机文本</h1>
+<h2 id="js-show-text"></h2>
+<script>
+    window.onload = function () {
+        //显示文本
+        function showText() {
+            var text  = document.getElementById("js-show-text");
+            var texts = ["谁家的","呵呵","哈哈","恩恩额","这是","nis"];
+            var textIndex = Math.floor(Math.random()* texts.length);
+            text.innerHTML  = texts[textIndex];
+            setTimeout(showText,1000);
+        }
+
+        showText();
+    }
+</script>
+</body>
+</html>

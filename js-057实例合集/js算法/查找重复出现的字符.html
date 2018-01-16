@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var str = "abccddeffffaa";
+    var hash = {}, k, count = 0, zi = "";
+    for (var i = 0; i < str.length; i++) {
+        if (hash[str[i]] !== undefined) {
+            hash[str[i]] += 1;
+        } else {
+            hash[str[i]] = 1;
+        }
+    }
+    console.log(hash);
+    for (var k in hash) {
+        if (hash[key] > count) {
+            zi = k;
+            count = hash[k];
+        }
+    }
+
+    console.log(`字符是:${zi}共${count}个`);
+
+</script>
+</body>
+</html>

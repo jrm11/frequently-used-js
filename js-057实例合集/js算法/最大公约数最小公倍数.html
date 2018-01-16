@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var a = 5,b = 100;
+    var min = Math.min(a,b);
+    var max = Math.max(a,b);
+    for(var i = min; i>0; i++){
+        if(a%i ==0&& b%i==0){
+            console.log(`max${i}`);
+            break;
+        }
+    }
+
+    for(var i = max; i<=a*b;i++){
+        if(i%a==0 && i%b==0){
+            console.log(`min${i}`);
+            break;
+        }
+    }
+
+    while(a%b !=0){
+        var c = a%b;
+        a = b;
+        b = c;
+    }
+
+    console.log(`minmax${b}`);
+</script>
+</body>
+</html>

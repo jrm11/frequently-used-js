@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示时钟</title>
+    <link rel="stylesheet" href="../common/common.css">
+</head>
+<body>
+<h1>时间日期篇--显示时钟</h1>
+<h2 id="js-show-time"></h2>
+<script>
+    window.onload = function () {
+        //显示时间
+        function showTimes() {
+            var showTime = document.getElementById('js-show-time');
+            var time = new Date();
+            var year = time.getFullYear(); //年
+            var month = time.getMonth() + 1;//月
+            var day = time.getDate();//日
+            var date = time.getDay();//星期
+            var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            var hour = time.getHours();//小时
+            var str = hour<12?"上午":"下午";
+            var minutes = time.getMinutes();//分
+            var seconds = time.getSeconds();//秒
+            var timesStr = year + '年' + month + '月' + day + '日 ' + weeks[date] +str+ check(hour) + '：' + check(minutes) + '：' + check(seconds) + '秒';
+            showTime.innerHTML = timesStr;
+            setTimeout(showTimes,1000);
+        }
+
+        //时分秒数字小于零前加零
+        function check(val) {
+            if (val < 10) {
+                return "0" + val;
+            } else {
+                return val;
+            }
+
+        }
+        showTimes();
+
+
+
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取键盘按下的值</title>
+    <link rel="stylesheet" href="../common/common.css">
+</head>
+<body>
+<div id="txt">dd</div>
+<h3>事件--获取键盘按下的值</h3>
+<script>
+    window.onload = function () {
+        var str = '';
+//        var txt = document.getElementById('txt');
+        function showKey() {
+            asc = event.keyCode;
+            key = String.fromCharCode(asc);
+            str += key;
+            txt.innerHTML = str;
+        }
+
+        document.onkeypress = showKey;
+    }
+</script>
+</body>
+</html>

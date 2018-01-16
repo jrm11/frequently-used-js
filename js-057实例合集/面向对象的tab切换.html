@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+    .active {
+        background: #f00;
+    }
+    
+    #main div {
+        display: none;
+        border: 1px solid #000;
+        height: 300px;
+        width: 300px;
+        /* overflow: hidden; */
+    }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <button class="active">1</button>
+        <button>2</button>
+        <button>3</button>
+        <div style="display: block;">11111</div>
+        <div>22222</div>
+        <div>33333</div>
+    </div>
+    <script>
+    window.onload = function() {
+
+      var t = new Tab();
+      t.init();
+    }
+
+    function Tab() {
+        this.main = document.getElementById('main');
+        this.btn = this.main.getElementsByTagName('button');
+        this.divs = this.main.getElementsByTagName('div');
+    };
+
+    Tab.prototype.init = function() {
+        var $this = this;
+        for (var i = 0; i < this.btn.length; i++) {
+            this.btn[i].index = i;
+            this.btn[i].onclick = function(){
+                $this.change(this);
+            }
+        }
+    };
+
+    Tab.prototype.change = function(obj) {
+        for (var i = 0; i < this.btn.length; i++) {
+            this.btn[i].className = '';
+            this.divs[i].style.display = 'none';
+        }
+        obj.className = 'active';
+        this.divs[obj.index].style.display = 'block';
+
+    };
+    </script>
+</body>
+
+</html>

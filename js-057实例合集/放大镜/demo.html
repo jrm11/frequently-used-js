@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+
+        #demo {
+            /*display: block;*/
+            width: 400px;
+            height: 255px;
+            /*margin: 50px;*/
+            position: relative;
+            border: 1px solid #ccc;
+        }
+
+        #small-box {
+            /*position: relative;
+            z-index: 1;*/
+        }
+
+        #float-box {
+            display: none;
+            width: 160px;
+            height: 120px;
+            position: absolute;
+            background: #0099ff;
+            border: 1px solid #0099ff;
+            filter: alpha(opacity=50);
+            opacity: 0.5;
+        }
+
+        #mark {
+            position: absolute;
+            display: block;
+            width: 400px;
+            height: 255px;
+            background-color: #444;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            z-index: 10;
+        }
+
+        #big-box {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 460px;
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            z-index: 1;
+            ;
+        }
+
+        #big-box img {
+            position: absolute;
+            z-index: 5
+        }
+
+        .show{
+            display: block!important;
+        }
+
+        .hide{
+            display: none!important;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="demo">
+        <div id="small-box">
+            <div id="mark"></div>
+            <div id="float-box"></div>
+            <img src="macbook-small.jpg" />
+        </div>
+        <div id="big-box">
+            <img src="macbook-big.jpg" />
+        </div>
+    </div>
+    <script>
+        //页面加载完毕后执行
+        var objDemo = null,
+            objSmallBox = null,
+            objMark = null,
+            objFloatBox = null,
+            objBigBox = null,
+            objBigBoxImage = null,
+            doc = document;
+        window.onload = function() {
+            objDemo = doc.getElementById("demo");
+            objSmallBox = doc.getElementById("small-box");
+            objMark = doc.getElementById("mark");
+            objFloatBox = doc.getElementById("float-box");
+            objBigBox = doc.getElementById("big-box");
+            objBigBoxImage = objBigBox.getElementsByTagName("img")[0];
+
+            objMark.onmouseover = function() {
+                objFloatBox.className = "show";
+                objBigBox.className = "show";
+            }
+
+            objMark.onmouseout = function() {
+                objFloatBox.className = "hide";
+                objBigBox.className = "hide";
+            }
+
+            objMark.onmousemove = function(ev) {
+
+                var _event = ev || window.event; //兼容多个浏览器的event参数模式
+
+                var left = _event.clientX - objDemo.offsetLeft - objSmallBox.offsetLeft - objFloatBox.offsetWidth / 2;
+                var top = _event.clientY - objDemo.offsetTop - objSmallBox.offsetTop - objFloatBox.offsetHeight / 2;
+
+                if (left < 0) {
+                    left = 0;
+                } else if (left > (objMark.offsetWidth - objFloatBox.offsetWidth)) {
+                    left = objMark.offsetWidth - objFloatBox.offsetWidth;
+                }
+
+                if (top < 0) {
+                    top = 0;
+                } else if (top > (objMark.offsetHeight - objFloatBox.offsetHeight)) {
+                    top = objMark.offsetHeight - objFloatBox.offsetHeight;
+
+                }
+
+                objFloatBox.style.left = left + "px"; //oSmall.offsetLeft的值是相对什么而言
+                objFloatBox.style.top = top + "px";
+
+                var percentX = left / (objMark.offsetWidth - objFloatBox.offsetWidth);
+                var percentY = top / (objMark.offsetHeight - objFloatBox.offsetHeight);
+
+                objBigBoxImage.style.left = -percentX * (objBigBoxImage.offsetWidth - objBigBox.offsetWidth) + "px";
+                objBigBoxImage.style.top = -percentY * (objBigBoxImage.offsetHeight - objBigBox.offsetHeight) + "px";
+            }
+        }
+    </script>
+</body>
+
+</html>

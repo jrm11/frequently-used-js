@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>日期格式化</title>
+</head>
+<body>
+<div id="wrap"></div>
+<script>
+    window.onload = function () {
+        var wrap = document.querySelector('#wrap');
+
+        function format(date) {
+            var y = date.getFullYear();
+            var M = date.getMonth() + 1;
+            var d = date.getDate();
+            var h = date.getHours();
+            var weeks = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            var m = date.getMinutes();
+            var s = date.getSeconds();
+            return `${y}年${M}月${d}日${checkNum(h)}时${checkNum(m)}分${checkNum(s)}秒`;
+            function checkNum(num) {
+                if (num < 10) {
+                    num = "0" + num;
+                } else {
+                    return num;
+                }
+            }
+        }
+
+        wrap.innerHTML = format(new Date());
+    };
+
+
+</script>
+</body>
+</html>

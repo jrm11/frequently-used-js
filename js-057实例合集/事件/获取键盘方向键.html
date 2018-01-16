@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取键盘方向键</title>
+    <link rel="stylesheet" href="../common/common.css">
+</head>
+<body>
+<h3>事件--获取键盘方向键</h3>
+<script>
+    window.onload = function () {
+
+        function showKey() {
+            key = event.keyCode;
+            if (key == 37) {
+                console.log("按下了↑键");
+            } else if (key == 38) {
+                console.log("按下了←键");
+            } else if (key == 39) {
+                console.log("按下了→键");
+            } else if (key == 40) {
+                console.log("按下了↓键");
+            }
+        }
+
+        document.onkeydown = showKey;
+    }
+</script>
+</body>
+</html>

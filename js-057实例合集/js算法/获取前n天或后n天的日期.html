@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>得到前N天或后N天的日期</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+		function showDate(num){
+			var date = new Date();
+			date.setDate(date.getDate()+num);
+			date = date.getFullYear()+ '-' + (date.getMonth() + 1)+ '-' + date.getDate();
+			return date;
+		}    	
+
+		console.log('今天是:'+showDate(0));
+		console.log('昨天是:'+showDate(-1));
+		console.log('明天是:'+showDate(1));
+		console.log('10天前是:'+showDate(-10));
+		console.log('10天后是:'+showDate(+10));
+    </script>
+</body>
+
+</html>

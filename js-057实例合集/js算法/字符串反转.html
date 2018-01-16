@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        var string = "-abcdefg00";
+
+        function fn(str) {
+            var a = "";
+            console.log(str.substring(0, 1) == '-');
+            if (str.substring(0, 1) == '-') {
+                var c = str.substring(1).split("").reverse().join("");//最后把数组变成字符串
+                a = '-' + c;
+            } else {
+                var c = str.split("").reverse().join("");//最后把数组变成字符串
+                if (c.substring(0, 1) == 0) {
+                    a = c.substring(1);
+                } else {
+                    a = c;
+                }
+            }
+            return a;
+        }
+
+        var aa = fn(string);
+        console.log(aa);
+    }
+
+</script>
+</body>
+</html>

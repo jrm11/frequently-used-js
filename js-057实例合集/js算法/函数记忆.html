@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+     *   函数记忆
+     *
+     * */
+    var isPrime = (function (n) {
+        var hash = {};
+        return function (n) {
+            if (!isNaN(n) && n > 1) {
+                if (n <= 3) {
+                    return true;
+                } else if (n % 2 == 0) {
+                    return false
+                } else if (hash[n] !== undefined) {
+                    return hash[n];
+                } else {
+                    for (var i = 3; i < Math.sqrt(n); i += 2) {
+                        if (n % i == 0) {
+                            hash[n] = false;
+                            return false;
+                        }
+                    }
+                    hash[n] = true;
+                    return true;
+                }
+            } else {
+                throw new Error("必须输入大于1 的数字")
+            }
+        }
+    })();
+
+    var isMemory = isPrime(2);
+    console.log(isMemory);
+</script>
+</body>
+</html>

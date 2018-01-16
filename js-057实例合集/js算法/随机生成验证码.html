@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机生成固定长度的字符</title>
+</head>
+<body>
+<script>
+  window.onload = function () {
+    let str = "ABCDEFJHIJKLMNOOPQRSTUVWXYZabcdefjhijklmnopqrstuvwxyz0123456789";
+
+    let randomN = "";
+    let obj = {
+      randomNum:function(len){
+        for(let i = 0; i< len; i++){
+          let index = Math.floor(Math.random()*str.length);
+          randomN += str[index];
+        }
+        return randomN;
+      }
+    };
+    let rN = obj.randomNum(10);
+    console.log(rN);
+  }
+</script>
+</body>
+</html>

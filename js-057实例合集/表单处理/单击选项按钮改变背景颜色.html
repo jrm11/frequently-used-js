@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>单击选项按钮改变背景颜色</title>
+</head>
+<body>
+<input name="radio1" type="radio" value="白色" id="ra1" checked=checked/>白色
+<input name="radio1" type="radio" value="红色" id="ra2"/>红色
+<input name="radio1" type="radio" value="蓝色" id="ra3"/>蓝色
+<input name="radio1" type="radio" value="黄色" id="ra4"/>黄色
+<script>
+    window.onload = function () {
+        var radioCheck = document.getElementsByName("radio1");
+        for (var i = 0; i < radioCheck.length; i++) {
+//            radioCheck[i].i = i;//添加下标方法也可解决问题
+            (function (arg) {//加闭包
+                radioCheck[i].onclick = function () {
+//                    if (radioCheck[arg].value == "白色") {
+//                        document.body.style.backgroundColor = "#777";
+//                    } else if (radioCheck[arg].value == "红色") {
+//                        document.body.style.backgroundColor = "#f00";
+//                    } else if (radioCheck[arg].value == "蓝色") {
+//                        document.body.style.backgroundColor = "#0099ff";
+//                    } else if (radioCheck[arg].value == "黄色") {
+//                        document.body.style.backgroundColor = "#ff0";
+//                    }
+                    var str = radioCheck[arg].value;
+                    switch (str) {
+                        case  "白色":
+                            document.body.style.backgroundColor = "#fff";
+                            break;
+                        case "红色":
+                            document.body.style.backgroundColor = "#f00";
+                            break;
+                        case "蓝色":
+                            document.body.style.backgroundColor = "#0099ff";
+                            break;
+                        case "黄色":
+                            document.body.style.backgroundColor = "#ff0";
+                            break;
+                        default :
+                            break;
+                    }
+                }
+            })(i);
+        }
+    }
+</script>
+</body>
+</html>

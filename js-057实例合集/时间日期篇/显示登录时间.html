@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>显示登录时间及时长</title>
+    <link rel="stylesheet" href="../common/common.css">
+</head>
+<body>
+<h1>时间日期篇--显示登录时间及时长</h1>
+<h2>登录时间：<span id="js-show-time"></span></h2>
+<h2>上网时间：<span id="js-show-time1"></span></h2>
+<script>
+    window.onload = function () {
+        var doc = document;
+        var sysTime = new Date();//系统的当前时间
+        console.log("sysTime.getTime()=" + sysTime.getTime());
+        function clockOn() {
+            var showTime = doc.getElementById('js-show-time');
+            var showTime1 = doc.getElementById('js-show-time1');
+            var curTime = new Date();
+            console.log("curTime.getTime()=" + curTime.getTime());
+            var diff = new Date();
+            var timeDiff = diff.setTime(Math.abs(curTime.getTime() - sysTime.getTime()));
+            var hos = Math.floor(timeDiff / (1000 * 60 * 60));
+            var mins = Math.floor(timeDiff / 1000 / 60 % 60);
+            var secs = Math.floor(timeDiff / 1000 % 60);
+
+            var hours = curTime.getHours();
+            var minus = curTime.getMinutes();
+            var seconds = curTime.getSeconds();
+            curTime = check(hours) + ":" + check(minus) + ":" + check(seconds);
+            showTime.innerHTML = curTime;
+//            if (secs > 59) {
+//                secs = secs % 60;
+//            }
+//            if (mins > 59) {
+//                mins = mins % 60;
+//            }
+
+            showTime1.innerHTML = check(hos) + ":" + check(mins) + ":" + check(secs);
+            setTimeout(clockOn, 1000);
+
+        }
+
+        function check(val) {
+            if (val < 10) {
+                return "0" + val;
+            } else {
+                return val;
+            }
+
+        }
+
+        clockOn();
+    }
+</script>
+</body>
+</html>

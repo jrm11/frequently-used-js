@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*
+    *   百、十、个位数都可以是1,2,3,4组成
+    *   三重循环
+    *   去除不满足的数（百、十、个都不相等)
+    *
+    * */
+    function threeNum() {
+        var count = 0;
+        for (let i = 1; i < 5; i++) {
+            for (let j = 1; j < 5; j++) {
+                for (let k = 1; k < 5; k++) {
+                    //去除不满足的数
+                    if (i != j && j != k && i != k) {
+                        console.log(`${i}${j}${k}`);
+                        count++;
+                    }
+                }
+            }
+        }
+        console.log(`总共有${count}个`);
+    }
+
+    threeNum();
+
+</script>
+</body>
+</html>

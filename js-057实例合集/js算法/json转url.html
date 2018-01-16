@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>json转url</title>
+</head>
+<body>
+    <script>
+        function jsonToUrl(json){
+            var arr = [];
+            for(var name in json){
+                arr.push(name+'='+json[name]);
+            }
+            return arr.join('&');
+        }
+
+        var json = jsonToUrl({"name":"xiaoming","age":12});
+        console.log(json);
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+#registerForm {
+  width: 300px;
+  margin: 0 auto;
+}
+#registerForm .username,
+#registerForm .pwd,
+#registerForm .conformPwd {
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #ccc;
+  margin-bottom: 30px;
+}
+#registerForm .username label,
+#registerForm .pwd label,
+#registerForm .conformPwd label {
+  margin-left: 10px;
+}
+#registerForm .username input,
+#registerForm .pwd input,
+#registerForm .conformPwd input {
+  font-size: 14px;
+  color: #c0c0c0;
+  border: none;
+  outline: none;
+}
+#registerForm #btn-submit {
+  width: 100%;
+  border: none;
+  background: #0099ff;
+  color: #fff;
+  padding: 5px 0;
+}

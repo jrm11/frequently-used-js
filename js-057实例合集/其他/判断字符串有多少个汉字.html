@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>判断字符串有多少个汉字</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      function cal(str) {
+        var reg = /[\u4e00-\u9fa5]/g;
+        if(reg.test(str)){
+          return str.match(reg).length;
+        }else{
+          return 0;
+        }
+      }
+      var str = "香茗ks深刻理解啥地方1123";
+      var num = cal(str);
+      console.log(num);
+    </script>
+  </body>
+</html>

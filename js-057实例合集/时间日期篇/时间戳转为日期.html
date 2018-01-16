@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=EDGE, chrome=1">
+        <meta name="viewport"
+              content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+        <meta name="format-detection" content="telephone=no, email=no"/>
+        <meta name="msapplication-tap-highlight" content="no"/>
+        <title>Title</title>
+</head>
+<body>
+<script>
+        var unixTimestamp = new Date(1477386005 * 1000);
+        Date.prototype.toLocaleString = function () {
+                return this.getFullYear() + "年" + (this.getMonth() + 1) + "月" + this.getDate() + "日 " + this.getHours() + "点" + this.getMinutes() + "分" + this.getSeconds() + "秒";
+        };
+        commonTime = unixTimestamp.toLocaleString();
+        alert(commonTime);
+</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算输入的日期是第几天</title>
+    <style>
+        input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+年:<input type="text" id="year"><br/>
+月:<input type="text" id="month"><br/>
+日:<input type="text" id="day"><br/>
+<input type="button" id="btn" value="计算">
+<script>
+
+    let doc = document;
+    let inputYear, inputMonth, inputDay,
+            cur_year, cur_mm, cur_day, pin = 0,
+            run = 0, yearSumDay = 0, monthSumDay, leap, btn, week;
+    const FIXED_YEAR = 1900;
+    const LEAP_YEAR = 366;
+    const NONLEAP_YEAR = 365;
+    var jisuan = ()=> {
+        btn = doc.querySelector("#btn");//按钮
+        btn.onclick = function () {
+            inputYear = doc.querySelector("#year").value;//输入的年
+            inputMonth = doc.querySelector("#month").value;//输入的月
+            inputDay = doc.querySelector("#day").value;//输入日
+
+            if (checkNum(inputYear, FIXED_YEAR, 3000) && checkNum(inputMonth, 1, 12) && checkNum(inputDay, 1, 31)) {
+                countYearDay(inputYear, inputMonth, inputDay);
+                contDay(cur_mm);
+                yearSumDay = run * LEAP_YEAR + pin * NONLEAP_YEAR + monthSumDay;
+                week = yearSumDay % 7;
+                if (week == 0) {
+                    console.log(`今天是星期日`);
+                } else {
+                    console.log(`今天是星期${week % 7}`);
+                }
+            }
+        };
+    };
+    //计算年的输入年的总天数
+    var countYearDay = (inputYear, inputMonth, inputDay) => {
+//        cur_year = parseInt(inputYear, 10);
+//        cur_mm = parseInt(inputMonth, 10);
+//        cur_day = parseInt(inputDay, 10);
+
+        cur_year = +inputYear;
+        cur_mm = +inputMonth;
+        cur_day = +inputDay;
+        for (var i = FIXED_YEAR; i < cur_year; i++) {
+            if (i % 4 == 0 && i % 100 != 0 || i % 400 == 0) {
+                run++;
+            } else {
+                pin++;
+            }
+        }
+    };
+    //计算月的天数
+    var contDay = (cur_mm) => {
+        switch (cur_mm) {
+            case 1:
+                monthSumDay = 0;
+                break;
+
+            case 2:
+                monthSumDay = 31;
+                break;
+
+            case 3:
+                monthSumDay = 59;
+                break;
+
+            case 4:
+                monthSumDay = 90;
+                break;
+
+            case 5:
+                monthSumDay = 120;
+                break;
+
+            case 6:
+                monthSumDay = 151;
+                break;
+
+            case 7:
+                monthSumDay = 181;
+                break;
+
+            case 8:
+                monthSumDay = 212;
+                break;
+
+            case 9:
+                monthSumDay = 243;
+                break;
+
+            case 10:
+                monthSumDay = 273;
+                break;
+
+            case 11:
+                monthSumDay = 304;
+                break;
+
+            case 12:
+                monthSumDay = 334;
+                break;
+
+            default:
+                console.log("data error");
+                break;
+        }
+        monthSumDay = monthSumDay + cur_day;
+        if (cur_year % 4 == 0 && cur_year % 100 != 0 || cur_year % 400 == 0) {
+            leap = 1;
+        } else {
+            leap = 0;
+        }
+
+        if (leap == 1 && cur_mm > 2) {
+            monthSumDay++;
+            console.log(`该年是第${monthSumDay}天`);
+        } else {
+            console.log(`该年是第${monthSumDay}天`);
+        }
+    };
+
+    //检查输入的数值是否有效
+    var checkNum = (str, min, max) => {
+        if (str == "" || str < 0 ) {//只能输入数字||str.replace(/[^\d]/g)
+            alert("请输入正确的值");
+            return false;
+        }
+
+        let val = parseInt(str, 10);
+        if (val < min || val > max) {
+            alert(`请输入数值${min}到${max}的值`);
+            return false;
+        }
+        return true;
+    };
+
+    jisuan();
+</script>
+</body>
+</html>

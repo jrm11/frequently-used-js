@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单序列化</title>
+</head>
+<body>
+<fieldset>
+    <legend>表单</legend>
+    <form>
+
+        <input type="text" name="uname">
+        <input type="text" name="upwd">
+        <input type="text" name="sex">
+        <input type="text" name="age">
+        <button type="button" id="btn">submit</button>
+    </form>
+</fieldset>
+
+<script type="text/javascript">
+    btn.onclick = function(){
+        var form=document.forms[0];
+        console.log(serialize(form));
+    };
+    function serialize(form) {
+        // entries() 返回可枚举的键值对数组
+        var formData = new FormData(form),
+                getValue = formData.entries(),
+                parts = [];
+        console.log(getValue);
+        for (var pair of getValue) {
+            parts.push(pair[0] + "=" + pair[1]);
+        }
+        return parts.join("&");
+    }
+</script>
+</body>
+</html>

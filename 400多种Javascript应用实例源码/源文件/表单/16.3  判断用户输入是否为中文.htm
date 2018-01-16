@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<title></title>
+<script LANGUAGE="JavaScript">
+function ischinese(s){
+    var ret=true;
+    for(var i=0;i<s.length;i++)           //����ÿһ���ı��ַ�
+      ret=ret && (s.charCodeAt(i)>=10000);//�ж��ı��ַ���unicodeֵ
+    return ret;
+} 
+function chk(str)
+{
+  var val= ischinese(str);               //�ж��Ƿ��������
+  if(!val)
+     alert("��������ַ�����ȫ����");
+  else
+     alert("��������ַ���ȫ����");
+}
+</script>
+</head>
+<body>
+<input type=text name="txt1" value="this is test!">
+<input type=button value="ת���ı�" onClick="javascript:chk(txt1.value)">
+</body>
+</html>

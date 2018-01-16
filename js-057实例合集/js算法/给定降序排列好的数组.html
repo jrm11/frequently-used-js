@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var arr = [9, 8, 7, 6, 5, 4, 3, 2, 1];
+    var result = [];
+    for (var i = 0, j = arr.length - 1; i < j; i++, j--) {
+        result.push(arr[j]);
+        result.push(arr[i]);
+    }
+    if (i == j) {
+        result.push(arr[i]);
+    }
+    console.log(result);
+</script>
+</body>
+</html>

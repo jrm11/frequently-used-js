@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+    <link rel="stylesheet" href="../common/common.css">
+</head>
+
+<body>
+    <h1>时间日期篇--倒计时</h1>
+    <div>
+        <span id="t_d">00天</span>
+    </div>
+    <script>
+        window.onload = function() {
+            //显示时间
+            function showTimes() {
+                var doc = document;
+                var endTime = new Date('2017/10/01 00:00:00');
+                var nowTime = new Date();
+
+                var t = endTime.getTime() - nowTime.getTime();
+                var d, h, m, s = 0;
+                if (t > 0) {
+                    d = Math.floor(t / (1000 * 60 * 60 * 24));
+                    h = Math.floor(t / 1000 / 60 / 60 % 24);
+                    m = Math.floor(t / 1000 / 60 % 60);
+                    s = Math.floor(t / 1000 % 60);
+                }
+
+                doc.getElementById("t_d").innerHTML = `${d}天${h}时${m}分${s}秒`
+            }
+            setInterval(showTimes, 0);
+            //时分秒数字小于零前加零
+            function check(val) {
+                if (val < 10) {
+                    return "0" + val;
+                } else {
+                    return val;
+                }
+
+            }
+            showTimes();
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #show{
+            width: 100px;
+            height: 100px;
+            background: #0099ff;
+            display: none;
+        }
+        .active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <button id="div">显示</button>
+    <div id="show"></div>
+    <script>
+        window.onload = function(){
+            var flag = true;
+            div.onclick = function(){
+                console.log("ddd");
+                if(flag){
+                    show.style.display = "block";
+                    div.innerHTML = "隐藏";
+                }else{
+                    div.innerHTML = "显示";
+                    show.style.display = "none";
+                }
+                flag = !flag;
+            }
+        }
+    </script>
+</body>
+</html>

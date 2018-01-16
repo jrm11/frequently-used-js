@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本自动输出</title>
+    <link rel="stylesheet" href="../common/common.css">
+</head>
+<body>
+<h1>文本篇--文本自动输出</h1>
+<textarea cols="50" rows="8" id="js-show-text">
+</textarea>
+    <script>
+    window.onload = function () {
+        var text = document.getElementById("js-show-text");
+        var str = "文本自动输出斯蒂芬李凯文文本自动输出斯蒂芬" +
+                "李凯文欧电费缴费的历史课的都是法律框架文本自动输" +
+                "出斯蒂芬李凯文欧电费缴费的历史课的都是法律框架文本" +
+                "自动输出斯蒂芬李凯文欧电费缴费的历史课的都是法律" +
+                "框架欧电费缴费的历框架欧电费缴费的历史课的都是法律" +
+                "框架框架欧电费缴费的历史课的都是法律框架框架欧电费缴" +
+                "费的历史课的都是法律框架框架欧电费缴费的历史课的都是" +
+                "法律框架框架欧电费缴费的历史课的都是法律框架史课的都" +
+                "是法律框架";
+        var pos = 0;
+
+        function showText() {
+            text.value = str.substring(0, pos);
+            if (pos++ > str.length) {
+                pos = 0;
+                setTimeout(showText, 2000);
+            } else {
+                setTimeout(showText, 100);
+            }
+        }
+
+        showText();
+    }
+</script>
+</body>
+</html>

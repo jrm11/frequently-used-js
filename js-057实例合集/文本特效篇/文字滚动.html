@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文字滚动</title>
+    <link rel="stylesheet" href="../common/common.css">
+    <style>
+        #div1{
+            width:150px;
+            height:50px;
+            line-height: 50px;
+            white-space:nowrap;
+            overflow: hidden;
+            background: #555;
+            padding:5px 15px;
+        }
+
+        span{
+            display: inline-block;
+            color: #fff;
+            padding-left:150px;
+        }
+    </style>
+</head>
+<body>
+<h1>文本篇--文字滚动</h1>
+
+<div id="div1">
+    <span id="span1">文之盾动销的萨克附件为文之盾动销的萨克附件为文之盾动销的萨克附件为文之盾动销的萨克附件为</span>
+    <span id="span2"></span>
+</div>
+<script>
+    window.onload = function () {
+        var div, span1, span2, i, timer;
+
+        function init() {
+            timer = setInterval(ttb, 20);
+        }
+
+        function ttb() {
+            div = getId('div1');
+            span1 = getId('span1');
+            span2 = getId('span2');
+
+            span2.innerHTML = span1.innerHTML;
+            if (span1.offsetWidth <= div.scrollLeft) {
+                console.log(div.scrollLeft);
+                div.scrollLeft -= span1.offsetWidth;
+            } else {
+                div.scrollLeft++;console.log(div.scrollLeft);
+            }
+        }
+
+        function getId(id) {
+            return document.getElementById(id);
+        }
+
+        init();
+    }
+</script>
+</body>
+</html>

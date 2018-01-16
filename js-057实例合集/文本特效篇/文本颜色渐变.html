@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文本颜色渐变</title>
+    <link rel="stylesheet" href="../common/common.css">
+</head>
+<body>
+<h1>文本篇--文本颜色渐变</h1>
+<h2 id="js-show-text">文本颜色渐变文本颜色渐变</h2>
+<script>
+    window.onload = function () {
+        var doc = document;
+        var text = doc.getElementById("js-show-text");
+
+        function delta(sHex1, sHex2, iNum) {
+            var iHex1 = parseInt("0x" + sHex1);//转换为16进制 255
+            var iHex2 = parseInt("0x" + sHex2);//68
+            console.log("iHex1="+iHex1);
+            console.log("iHex2="+iHex2);
+            console.log("iHex2 - iHex1) / (iNum - 1=="+(iHex2 - iHex1) / (iNum - 1));
+            return (iHex2 - iHex1) / (iNum - 1);
+        }
+
+        function colorFul(sText, sColor1, sColor2) {
+//            if(sText.length<=1){
+//                document.write("<p style = 'color:#"+sColor1+";'></p>");
+//                return;
+//            }
+            var fDelaR = delta(sColor1.substring(0, 2), sColor2.substring(0, 2), sText.length);
+            var fDelaG = delta(sColor1.substring(2, 4), sColor2.substring(2, 4), sText.length);
+            var fDelaB = delta(sColor1.substring(4, 6), sColor2.substring(4, 6), sText.length);
+
+
+            console.log("fDelaR===="+fDelaR);//-8.130434782608695
+            console.log("fDelaG===="+fDelaG);//2.217391304347826
+            console.log("fDelaB===="+fDelaB);//-8.130434782608695
+
+            var sColorR = parseInt("0x" + sColor1.substring(0, 2));
+            var sColorG = parseInt("0x" + sColor1.substring(2, 4));
+            var sColorB = parseInt("0x" + sColor1.substring(4, 6));
+
+            console.log("sColorR=="+sColorR);//255
+            console.log("sColorG=="+sColorG);//0
+            console.log("sColorB=="+sColorB);//211
+            console.log("len====="+sText.length);
+
+            for (var i = 0; i < sText.length; i++) {
+                document.write(
+                        "<span style='color:rgb(" + Math.round(sColorR) +
+                        "," + Math.round(sColorG) +
+                        "," + Math.round(sColorB) + ");'>" +
+                        "" + sText.substring(i, i + 1) + "</span>");
+
+                sColorR += fDelaR;
+                sColorG += fDelaG;
+                sColorB += fDelaB;
+            }
+
+            return;
+        }
+
+
+        colorFul("离开的手机凤凰","ff0000","0000cc");
+    }
+</script>
+</body>
+</html>

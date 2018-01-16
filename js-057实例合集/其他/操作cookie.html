@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function SetCookie(sName, sValue) {
+            document.cookie = sName + "=" + escape(sValue) + "; ";
+        }
+
+        function GetCookie(sName) {
+            var aCookie = document.cookie.split("; ");
+            for (var i = 0; i < aCookie.length; i++) {
+
+                var aCrumb = aCookie.split("=");
+                if (sName == aCrumb[0])
+                    return unescape(aCrumb[1]);
+            }
+
+        }
+
+        function DelCookie(sName) {
+            document.cookie = sName + "=" + escape(sValue) + "; expires=Fri, 31 Dec 1999 23:59:59 GMT;";
+        }
+    </script>
+</body>
+
+</html>

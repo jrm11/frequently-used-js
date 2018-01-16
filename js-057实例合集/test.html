@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function findAllOccurrences(arr, target) {
+        var num = [];
+        for(var i = 0; i< arr.length; i++){
+            if(arr[i]== target){
+                num.push(i);
+            }
+        }
+        return num;
+    }
+    var a = findAllOccurrences('abecefabca a ewa dsfa rete a','a')
+    console.log(a);
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>控制文本输入字数</title>
+    <link rel="stylesheet" href="../common/common.css">
+</head>
+<body>
+<h1>文本篇--控制文本输入字数</h1>
+<div>
+    本次最多可输入
+    <span id="js-max-num"></span>
+    个字符
+</div>
+<textarea cols="50" rows="8" id="js-show-text">
+</textarea>
+<div>
+    本次还剩
+    <span id="js-len">0</span>
+    可输入
+</div>
+<script>
+    window.onload = function () {
+        var doc = document;
+        var text = doc.getElementById("js-show-text");
+        var lenNum = doc.getElementById("js-len");
+        var maxNumber = doc.getElementById('js-max-num');
+
+        function limit(maxNum) {
+            maxNumber.innerHTML = maxNum;
+            text.onkeyup = function () {
+                checkNum(maxNum);
+            };
+
+            text.onkeydown = function () {
+                checkNum(maxNum);
+            };
+        }
+
+        function checkNum(maxNum) {
+            lenNum.innerHTML = maxNum - text.value.length;
+            if (lenNum.innerHTML <= 0) {
+                text.disabled = "disabled";
+                lenNum.innerHTML = 0;
+            }
+        }
+
+        limit(100);
+    }
+</script>
+</body>
+</html>

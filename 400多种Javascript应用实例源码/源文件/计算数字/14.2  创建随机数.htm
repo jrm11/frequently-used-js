@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>����ҳ</title>
+</head>
+<body>
+<script LANGUAGE="JavaScript">
+    rnd.today = new Date();                      //��ȡ��ǰʱ��
+    rnd.seed = rnd.today.getTime();              //��ȡһ��������
+    function rnd() {                           //���ظ������������
+        rnd.seed = (rnd.seed * 9301 + 49297) % 233280;
+        return rnd.seed / (233280.0);            //�������������
+    }
+    ;
+    function rand(number) {                    //�����������������1-10֮�䣩
+        return Math.ceil(rnd() * number);        //�����������
+    }
+    ;
+</script>
+<input type=button name="btn1" value="��ȡ���������" onClick="alert(rand(20))">
+<input type=button value="��ȡ�����������" onClick="alert(rnd())">
+</body>
+</html>

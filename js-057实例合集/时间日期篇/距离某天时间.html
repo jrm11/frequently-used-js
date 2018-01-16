@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>距离某天的时间</title>
+    <link rel="stylesheet" href="../common/common.css">
+
+</head>
+<body>
+<h1>时间日期篇--距离某天的时间</h1>
+<h2 id="js-show-time"></h2>
+<script>
+    window.onload = function () {
+        //显示时间
+        function showTimes() {
+            var showTime = document.getElementById('js-show-time');
+            var currentTime = new Date();
+            var newTime = new Date('2018-01-01');
+            var date = (currentTime.getTime()-newTime.getTime())/86400000;
+            showTime.innerHTML = "距离"+newTime+ parseInt(date)+"天";
+        }
+
+        showTimes();
+    }
+</script>
+</body>
+</html>

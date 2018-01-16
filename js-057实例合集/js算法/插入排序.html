@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>插入排序</title>
+</head>
+
+<body>
+<script>
+    window.onload = function () {
+        var arr = [1, 3, 2, 5, 9, 3, 4, 5, 0, 33, 77, 88, 4, 31];
+        var inserSort = function (ele) {
+            // 假设第一个数为有序数列
+            // 第一个数后面的数为无序数列
+            for (var i = 1; i < ele.length; i++) {
+                //如果后面的数小于后面的数
+                if (ele[i] < ele[i - 1]) {
+                    // 将当前开始遍历的数存入一个临时变量
+                    // 找到需要排序的数
+                    var temp = ele[i];
+                    //从第i-1个数开始向前遍历
+                    for (var j = i - 1; j >= 0 && temp < ele[j]; j--) {
+                        ele[j + 1] = ele[j];//后移
+                    }
+                    ele[j + 1] = temp;
+                }
+            }
+        }
+
+//        console.timeEnd("time");
+        console.log("插入排序前：" + arr);
+        inserSort(arr);
+        console.log("插入排序后：" + arr);
+
+    }
+</script>
+</body>
+
+</html>

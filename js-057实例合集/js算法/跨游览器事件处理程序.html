@@ -1,0 +1,44 @@
+<html>
+	<head>
+    	<style type="text/css">
+			#btn{
+				widtn:200px;
+				height:30px;
+				line-height:30px;
+				font-size:14px;
+				text-align:center;
+				font-weight:bold;
+				color:#FFF;
+				background:#03F;	
+				border:none;
+			}
+        </style>
+	</head>
+    <body>
+		<input id = "btn" type="button" value="click"/>
+	</body>
+    <script type="text/jscript">
+		var btn1 = document.getElementById("btn");
+		/*btn1.onclick=function test(){
+			alert("This is Test!");
+		}*/
+		//btn1.addEventListener("click",test,flase);
+		//btn1.attachEvent('onclick', test);
+		function test(){
+			alert("This is Test!");
+		}
+    	var eventUtil={
+			//添加句柄           //对象    //事件 //方法
+			addHandler:function(element, type, handler){
+				if(element.addEventListener){
+					element.addEventListener(type,handler,false);
+				}else if(element.attachEvent){
+					element.attachEvent('on'+type,handler);
+				}else{
+					element['on'+type]=handler;
+				}
+			}
+		}
+		eventUtil.addHandler(btn1,'click',test);
+    </script>
+</html>

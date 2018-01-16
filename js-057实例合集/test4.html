@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.mask{
+			width: 100%;
+			height: 100%;
+			background:#000;
+			opacity: .5;
+			position: fixed;
+		}
+		.model{
+			width: 300px;
+			position: absolute;
+			top:100px;
+			left:100px;
+			z-index: 9;
+			background: white;
+			border-radius:4px ;
+		}
+		.model-close-primary{
+			background:#999;
+			border-color:#999;
+
+		}
+		.model-close{
+			background:transparent;  /*两个图片叠加,设置底部的图片为透明,显示上层的图片*/
+			position:absolute;
+			top: 0;
+			right: 0;
+			cursor: pointer;
+			outline:0;              /*设置按钮的选中状态的虚框为无*/
+			border:0;
+			padding:9px 11px ;
+		}
+		.model-header{
+			padding: 16px 10px;
+			border-bottom: 1px solid #f2f2f2;
+			font-size: 16px;
+		}
+		.model-body{
+			padding: 16px 10px;
+			border-bottom: 1px solid #f2f2f2;
+			font-size: 12px;
+		}
+		.model-footer{
+			padding:16px 10px;
+			border-radius:0 0 4px 4px;
+			text-align: right;
+		}
+
+		.model-btn{
+			background: white;
+			border:1px solid #f4f4f4 ;
+			border-radius:4px;
+			color:#666;
+			padding: 5px 10px;
+			outline:0;
+			white-space: nowrap;  /*文字不换行*/
+			user-select: none;    /*不选中状态*/
+			cursor: pointer;
+		}
+		.model-btn-primery{
+			background: #108ee9;
+			color: white;
+		}
+		/*.onoff{
+			display: none;
+		}*/
+		/*.btn{
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 4;
+		}*/
+	</style>
+	<script type="text/javascript">
+
+		class Model{
+			constructor(option){
+				this.default = {
+					width : 300,
+					title : '这是标题',
+					content : '这是主体部分',
+					okFn : function(){},
+					cancelFn : function(){}
+				}
+				Object.assign(this.default,option);
+
+				//初始化时候默认是没有弹出的，记录一个状态
+				this.isDialog = false;
+			}
+
+			init(){
+
+				// 如果已经弹出了，就没必要重复弹出了
+				if(this.isDialog){
+					return;
+				}
+				// 弹出后立马记录状态，记录已经弹出过了
+				this.isDialog = true;
+				this.modelHtml = this.createModelHtml()
+				document.body.appendChild(this.modelHtml)
+				this.maskHtml = this.createMaskHtml()
+				document.body.appendChild(this.maskHtml)
+				this.createStyle()
+				this.addEvent()
+			}
+
+			addEvent(){
+				var ok = document.querySelector('.ok')
+				var cencel = document.querySelector('.cencel')
+				var modelClose = document.querySelector('.model-close')
+
+				var that = this
+				ok.onclick = function(){
+					that.modelHtml.remove()
+					that.maskHtml.remove();
+					// 当移出DOM的话，把状态设为false
+					// 记录已经没有弹出的弹框了
+					that.isDialog = false;
+					typeof that.default['okFn'] === 'function' && that.default['okFn']()
+				}
+				cencel.onclick = function(){
+					that.modelHtml.remove()
+					that.maskHtml.remove();
+					// 当移出DOM的话，把状态设为false
+					// 记录已经没有弹出的弹框了
+					that.isDialog = false;
+					typeof that.default['cencelFn'] === 'function' && that.default['cencelFn']()
+				}
+
+			}
+
+			createModelHtml(){
+				var modiv = document.createElement('div')
+				modiv.className = 'model onoff'
+				var html = `<button class="model-close model-close-primary">X</button>
+							 <div class="model-header">
+								${this.default['title']}
+							 </div>
+							 <div class="model-body">${this.default['content']}</div>
+							 <div class="model-footer">
+								<button class="model-btn cencel">
+									取消
+								</button>
+								<button class="model-btn model-btn-primery ok">
+									确定
+								</button>
+							 </div>`
+			    modiv.innerHTML = html
+			    return modiv
+			}
+
+			createStyle(){
+
+				this.modelHtml.style.width = this.default['width'] + 'px'
+
+				if('height' in  this.default){
+					this.modelHtml.style.height = this.default['height'] + 'px'
+				}
+
+				if('left' in this.default){
+					this.modelHtml.style.left = this.default['left'] + 'px'
+				}else{
+					this.modelHtml.style.left = (document.documentElement.clientWidth - this.modelHtml.offsetWidth)/2 + 'px'
+				}
+
+				if('left' in this.default){
+					this.modelHtml.style.top = this.default['top'] + 'px'
+				}else{
+					this.modelHtml.style.top = (document.documentElement.clientHeight - this.modelHtml.offsetHeight)/2 + 'px'
+				}
+
+			}
+
+			createMaskHtml(){
+				var madiv = document.createElement('div')
+				madiv.className = 'mask'
+				return madiv
+			}
+
+		}
+
+		window.onload = function(){
+			var btn = document.getElementById('btn')
+			var modelAa = document.querySelector('.model')
+			var maskAa = document.querySelector('.mask')
+			var onoff = true;
+			// 先初始化一个配置的对象
+			var c = new Model({
+					title : 'hello',
+					content : '<p>这是内容</P><p>这是内容</P><p>这是内容</P><p>这是内容</P><p>这是内容</P><p>这是内容</P>',
+					okFn : function(){
+						console.log('今天周四')
+					},
+					cencelFn : function(){
+						console.log('今天是晴天')
+					}
+			})
+			btn.onclick = function(){
+
+				// 开始初始化一个弹框
+				c.init()
+
+
+			}
+			// 初始化另一个配置对象
+			var c2 = new Model({
+					title : 'hello12345',
+					content : '<p>这是内容</P><p>这是内容</P><p>这是内容</P><p>这是内容</P><p>这是内容</P><p>这是内容</P>',
+					okFn : function(){
+						console.log('今天周四')
+					},
+					cencelFn : function(){
+						console.log('今天是晴天')
+					}
+			})
+			btn2.onclick  = function (){
+				// 点击调用这个弹出第二个框
+				c2.init();
+			};
+		}
+
+
+
+	</script>
+
+	<body>
+		<!--<div class="model">
+			<button class="model-close model-close-primary">X</button>
+			<div class="model-header">
+				这是标题
+			</div>
+			<div class="model-body">这是主体部分</div>
+			<div class="model-footer">
+				<button class="model-btn">
+					取消
+				</button>
+				<button class="model-btn model-btn-primery">
+					确定
+				</button>
+			</div>
+		</div>
+		<div class="mask"></div>-->
+		<input type="button" value="弹出模态框" id="btn"/>
+		<input type="button" value="弹出模态框2" id="btn2"/>
+	</body>
+</html>

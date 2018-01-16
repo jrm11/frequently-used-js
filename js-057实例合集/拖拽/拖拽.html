@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div {
+            width: 200px;
+            height: 200px;
+            background: #0099ff;
+            position: absolute;
+        }
+        #div2{
+            width: 300px;
+            height: 400px;
+            background: red;
+            position: absolute;
+            left:210px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div"></div>
+    <div id="div2"></div>
+    <script>
+        // var oDiv = null;
+        // var disX = 0;
+        // var disY = 0;
+        // window.onload = function(){
+        //     oDiv = document.getElementById("div");
+        //     init();
+        //
+        // }
+        //
+        // function init(){
+        //     oDiv.onmousedown =fnDown;
+        // }
+        //
+        // function fnDown() {
+        //     // console.log(e.clientX,e.clientY);
+        //     // console.log(e.offsetX,e.offsetY);
+        //     var e = e || window.event;
+        //     disX = e.clientX - oDiv.offsetLeft;
+        //     disY = e.clientY - oDiv.offsetTop;
+        //     // disX = e.offsetX;
+        //     // disY = e.offsetY;
+        //     // console.log(disX, disY);
+        //     document.onmousemove =fnMove;
+        //     document.onmouseup = fnUp;
+        //     return false;
+        //
+        // }
+        // function fnMove(e) {
+        //     var e = e || window.event;
+        //     var l = e.clientX - disX;
+        //     var t = e.clientY - disY;
+        //     if (l < 0) {
+        //         l = 0;
+        //     } else if (l > document.documentElement.clientWidth - oDiv.offsetWidth) {
+        //         l = document.documentElement.clientWidth - oDiv.offsetWidth;
+        //     }
+        //
+        //     if (t < 0) {
+        //         t = 0;
+        //     } else if (t > document.documentElement.clientHeight - oDiv.offsetHeight) {
+        //         t = document.documentElement.clientHeight - oDiv.offsetHeight;
+        //     }
+        //
+        //     oDiv.style.left = l + "px";
+        //     oDiv.style.top = t + "px";
+        // }
+        //
+        //
+        // function fnUp() {
+        //     document.onmousedown = null;
+        //     document.onmousemove = null;
+        // }
+
+        window.onload = function() {
+            var d = new Drag("div");
+            var d1 = new Drag("div2");
+            d.init();
+            d1.init();
+        }
+
+        function Drag(id) {
+            this.oDiv = document.getElementById(id);
+            this.disX = 0;
+            this.disY = 0;
+        }
+
+        Drag.prototype.init = function() {
+            var This = this;
+            this.oDiv.onmousedown =function(e){
+                var e = e || window.event;
+                This.fnDown(e);
+                return false;
+            };
+        }
+
+        Drag.prototype.fnDown = function(e) {
+            var This = this;
+            this.disX = e.clientX - this.oDiv.offsetLeft;
+            this.disY = e.clientY - this.oDiv.offsetTop;
+            document.onmousemove = function(e){
+                var e = e || window.event;
+                This.fnMove(e);
+            };
+            document.onmouseup = function(){
+                This.fnUp();
+            };
+        }
+        Drag.prototype.fnMove = function(e) {
+            var l = e.clientX - this.disX;
+            var t = e.clientY - this.disY;
+            if (l < 0) {
+                l = 0;
+            } else if (l > document.documentElement.clientWidth - this.oDiv.offsetWidth) {
+                l = document.documentElement.clientWidth - this.oDiv.offsetWidth;
+            }
+
+            if (t < 0) {
+                t = 0;
+            } else if (t > document.documentElement.clientHeight - this.oDiv.offsetHeight) {
+                t = document.documentElement.clientHeight - this.oDiv.offsetHeight;
+            }
+
+            this.oDiv.style.left = l + "px";
+            this.oDiv.style.top = t + "px";
+        }
+        Drag.prototype.fnUp = function() {
+            document.onmousedown = null;
+            document.onmousemove = null;
+        }
+    </script>
+</body>
+
+</html>

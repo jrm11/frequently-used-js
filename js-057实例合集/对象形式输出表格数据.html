@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>批量提交数据</title>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+    <style>
+        /*表格*/
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            border: 1px solid gray;
+            width: 150px;
+            height: 30px;
+            text-align: center;
+        }
+
+        th {
+            height: 35px;
+            font-weight: bold;
+            background-color: #ddd;
+        }
+
+        td input {
+            width: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="增加产品" onclick="addNewRow()" />
+    <input type="button" value="保存" onclick="saveData()" />
+    <h2>批量提交数据</h2>
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>产品 ID</th>
+                <th>产品名称</th>
+                <th>产品价格</th>
+            </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+    <br />
+
+    <script>
+        class Product {
+            constructor(id, n, p) {
+                // 属性
+                this.id = id;
+                this.name = n;
+                this.price = p;
+            }
+            // 方法
+            show() {
+                console.log('id:' + this.id + '\tname:' + this.name + '\tprice:' + this.price);
+            };
+        }
+
+        var doc = document;
+
+        function addNewRow() {
+            // id
+            var idCell = doc.createElement("td");
+            var input1 = doc.createElement("input");
+            idCell.appendChild(input1);
+            // name
+            var nameCell = doc.createElement("td");
+            var input2 = doc.createElement("input");
+            nameCell.appendChild(input2);
+            // price
+            var priceCell = doc.createElement("td");
+            var input3 = doc.createElement("input");
+            priceCell.appendChild(input3);
+
+            var row = doc.createElement("tr");
+            row.appendChild(idCell);
+            row.appendChild(nameCell);
+            row.appendChild(priceCell);
+
+            var tbody = doc.getElementById("tbody");
+            tbody.appendChild(row);
+        }
+
+        function saveData() {
+            var datas = [];
+            var tbody = doc.getElementById("tbody");
+            var rows = tbody.childNodes;
+            for (var i = 0; i < rows.length; i++) {
+                // 获得页面的数据
+                var id = rows[i].firstChild.firstChild.value;
+                var name = rows[i].firstChild.nextSibling.firstChild.value;
+                var price = rows[i].lastChild.firstChild.value;
+                // 定义对象以封装数据
+                var p = new Product(id, name, price);
+                datas[i] = p;
+            }
+            // 提交数据（测试数据）
+            for (var i = 0; i < datas.length; i++) {
+                datas[i].show();
+            }
+        }
+    </script>
+
+    <script>
+    </script>
+</body>
+
+</html>

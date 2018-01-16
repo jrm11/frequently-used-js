@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自动文本显示和隐藏</title>
+    <link rel="stylesheet" href="../common/common.css">
+</head>
+<body>
+<h1>文本篇--自动改变颜色与大小</h1>
+<h2 id="js-show-text">自动改变颜色与大小</h2>
+<script>
+    window.onload = function () {
+        var doc = document;
+        var text = doc.getElementById("js-show-text");
+        function  randomColor(){
+            var myColor = "#";
+            var color = "1234567890abcdef";
+            var colorCode = color.split("");
+            for(var i =0; i< 6; i++){//6位数的颜色值
+                myColor +=colorCode[Math.floor(Math.random()*color.length)];
+            }
+            return myColor;
+        }
+        
+        function  randomNum() {
+            var ranNum = Math.floor(Math.random()*30+12)+"px";
+            return ranNum;
+        }
+        //生成随机文本
+        function randomText() {
+            text.style.color=randomColor();
+            text.style.fontSize = randomNum();
+            var dd = randomNum();
+            console.log(dd);
+            setTimeout(randomText, 1000);
+        }
+
+        randomText();
+    }
+</script>
+</body>
+</html>

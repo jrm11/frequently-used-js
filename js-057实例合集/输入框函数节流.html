@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Throttle</title>
+</head>
+<body>
+<input id="search" type="text" name="search">
+<script type="text/javascript">
+    function queryData(text){
+        console.log("搜索：" + text);
+    }
+    var input = document.getElementById("search");
+    input.addEventListener("keyup", function(event){
+        throttle(queryData, window, 500, this.value);
+        // queryData(this.value);
+    });
+    function throttle(fn,context,delay,text){
+        clearTimeout(fn.timeoutId);
+        fn.timeoutId = setTimeout(function(){
+//            call()调用一个对象的方法 this指向这个对象
+            fn.call(context,text);
+        },delay);
+    }
+</script>
+</body>
+</html>

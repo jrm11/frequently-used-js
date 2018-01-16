@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+        <meta charset="utf-8">
+<title>ddd</title>
+<script type=text/javascript>
+Array.prototype.del = function(n)
+{
+if (n<0) return this;
+return this.slice(0,n).concat(this.slice(n+1,this.length));
+}
+var arr = new Array("1","2","3","4","5");
+console.log("=="+arr.del(5))
+//-->
+</script>
+</head>
+<body>
+</body>
+</html>

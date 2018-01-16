@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮刷新页面</title>
+</head>
+
+<body>
+<button type="button" id="btn">刷新</button>
+<script>
+        var btn = document.querySelector('#btn');
+        btn.onclick = refresh;  //调用方法是不能加括号，否则会连续执行方法
+        function refresh() {
+            document.location.reload();
+            document.write("页面刷新了");
+        }
+
+</script>
+</body>
+</html>

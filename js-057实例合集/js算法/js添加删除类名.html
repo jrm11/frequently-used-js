@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>js向html中添加类</title>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+</body>
+<div id="div" class="aaa"></div>
+<script type="text/javascript">
+var div = document.getElementById('div');
+//判断一个class是否存在
+function hasClass(element, cName) {
+    return !!element.className.match(new RegExp('(\\s|^)' + cName + '(\\s|$)'));
+}
+//添加类
+function addClass(element, cName) {
+    if (!hasClass(element, cName)) {
+        element.className += ' ' + cName;
+    }
+}
+
+addClass(div, 'ccc');
+addClass(div, 'ddd');
+addClass(div, 'eee');
+//删除一个类
+function removeClass(element,cName){
+	if (hasClass(element,cName)) {
+		element.className = element.className.replace(new RegExp('(\\s|^)' + cName + '(\\s|$)'),' ');
+	}
+}
+removeClass(div,'ccc');
+removeClass(div,'aaa');
+removeClass(div,'aaa');
+</script>
+
+</html>

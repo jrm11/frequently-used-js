@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> new document </title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <h1>事件绑定</h1>
+    <button id="btn1">发射子弹</button>
+    <button id="btn2">获得奖励</button>
+    <button id="btn3">失去奖励</button>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script>
+        $("#btn1").click(function()  {
+            console.log("发射普通子弹....");
+        });
+
+
+
+        function shoot(){
+            alert("发射跟踪导弹....");
+        }
+        /*
+            移除函数绑事件时不能使用匿名函数
+        */
+        //正确
+        $("#btn2").click(function() {
+            $("#btn1").bind("click", shoot);
+        });
+
+        $("#btn3").click(function() {
+            $("#btn1").unbind("click",shoot);
+        });
+
+        //错误因为虽然两个函数名相同但是所在的内存空间不一样
+        $("#btn2").click(function() {
+            $("#btn1").bind("click", function(){
+                alert("发射跟踪导弹....");
+            });
+        });
+
+        $("#btn3").click(function() {
+            $("#btn1").unbind("click",function(){
+
+            });
+        });
+    </script>
+</body>
+
+</html>

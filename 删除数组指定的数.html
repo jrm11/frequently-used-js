@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function removeWithoutCopy(arr, item) {
+        for(var i=0;i<arr.length;i++){
+            if(arr[i]==item){
+                arr.splice(i,1);
+                i--;
+            }
+        }
+        return arr;
+    }
+
+    console.log(removeWithoutCopy([1, 2, 3,5,5,5,,6,7,6,5,5, 4, 5], 5));
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>验证是否为数组</title>
+</head>
+<body>
+    <script>
+        function  isArray(obj){
+            return Array.isArray(obj) || Object.prototype.toString.call(obj) === '[object Array]';
+        }
+    </script>
+</body>
+</html>

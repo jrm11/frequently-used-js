@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="div"></div>
+    <script>
+    window.onload = function() {
+        var div = document.getElementById("div");
+        var re = '';
+
+        function replace(str, num) {
+            if (str.length < num) {
+                re = str;
+            } else {
+                re = str.substring(0, num - 3).trim() + '...';
+            }
+            return re;
+        }
+        replace("美国总统习大大士大夫撒地方都是", 7);
+        div.innerHTML = re;
+    }
+    </script>
+</body>
+
+</html>

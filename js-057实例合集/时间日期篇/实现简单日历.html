@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>日历</title>
+    <meta charset="utf-8" />
+    <style>
+        #date {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #date thead td {
+            border: 1px solid #000;
+            background-color: #ccc;
+            width: 80px;
+            height: 30px;
+            text-align: center;
+        }
+
+        #date tbody td {
+            border: 1px solid #666;
+            height: 25px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    年份：
+    <select id="year" onchange="showDate();">
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+            <option>2016</option>
+            <option>2017</option>
+        </select>
+    <br /> 月份：
+    <select id="month" onchange="showDate();">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+        </select>
+    <table id="date">
+        <thead>
+            <tr>
+                <td>日</td>
+                <td>一</td>
+                <td>二</td>
+                <td>三</td>
+                <td>四</td>
+                <td>五</td>
+                <td>六</td>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        function getDays(year, month) {
+            if (month == 4 || month == 6 || month == 8 || month == 9 || month == 11) {
+                return 30;
+            } else if (month == 2) {
+                if ((year % 4 == 0 && year % 100 != 0) || month % 400 == 0) {
+                    return 29;
+                } else {
+                    return 28;
+                }
+            } else {
+                return 31;
+            }
+        }
+
+        function showDate() {
+            var doc = document;
+            var yearNode = doc.getElementById("year");
+            var yearIndex = yearNode.selectedIndex;
+            var year = yearNode.getElementsByTagName("option")[yearIndex].innerHTML;
+
+            var monthNode = doc.getElementById("month");
+            var monthIndex = monthNode.selectedIndex;
+            var month = monthNode.getElementsByTagName("option")[monthIndex].innerHTML;
+
+            var days = getDays(year, month);
+            var dateObj = new Date(year, month - 1, 1);
+            var arr = [];
+            var date = 1;
+            for (var i = 0; i < 42; i++) {
+                if (i < dateObj.getDay() || date > days) {
+                    arr[i] = 0;
+
+                } else {
+                    arr[i] = date;
+                    date++;
+                }
+            }
+
+            var cells = doc.getElementById("tbody").getElementsByTagName("td");
+            console.log(cells.length);
+            for (var i = 0; i < cells.length; i++) {
+                if (arr[i] != 0) {
+                    cells[i].innerHTML = arr[i];
+                    cells[i].style.backgroundColor = "#fff";
+                } else {
+                    cells[i].innerHTML = "";
+                    cells[i].style.backgroundColor = "#eee";
+                }
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

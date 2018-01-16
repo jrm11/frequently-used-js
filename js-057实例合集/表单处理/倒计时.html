@@ -1,0 +1,32 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8">
+    <title>验证字符串是否全部为数字</title>
+</head>
+<body>
+<img src="../img/aa.png" alt="" id="pic">
+<div id="time"></div>
+<script>
+
+    window.onload = function () {
+        function times() {
+            var s = 10;
+            var timer = setInterval(function () {
+                s--;
+                time.innerHTML = s+"秒";
+                if (s < 0) {
+//                    s = 10;
+                    pic.style.display = "none";
+                    time.style.display = "none";
+                    alert("呵呵");
+                    clearInterval(timer);
+                }
+            }, 1000);
+
+        }
+
+        times();
+    }
+</script>
+</body>
+</html>

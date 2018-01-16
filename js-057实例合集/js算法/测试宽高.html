@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>haorooms前端博客-可视区域加载之 javascript</title>
+    <style>
+    .dvi {
+        height: 300px;
+        width: 300px;
+        background: #0099dd;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="dvi" id="div"></div>
+    <p class ="dvi"></p>
+    <script>
+    window.onload = function() {
+        // document.onmousedown = function(evt) {
+        //     if (getBtn(evt) == 0) {
+        //         alert('点击左键');
+        //     } else if (getBtn(evt) == 1) {
+        //         alert('点击中键');
+
+        //     } else if (getBtn(evt) == 2) {
+        //         alert('点击右键');
+        //     }
+        // }
+        document.onclick = function(evt){
+            var e = evt || window.event;
+            alert(e.srcElement||e.target);
+        }
+    }
+    
+    // // 跨游览器鼠标按钮
+    // function getBtn(evt) {
+    //     var e = evt || width.event;
+    //     if (evt) {
+    //         return e.button;
+    //     } else if (window.event) {
+    //         switch (e.button) {
+    //             case 1:
+    //                 return 0;
+    //             case 4:
+    //                 return 1;
+    //             case 2:
+    //                 return 2;
+    //             case 0:
+    //                 return 2;
+    //         }
+    //     }
+    // }
+    </script>
+</body>
+
+</html>

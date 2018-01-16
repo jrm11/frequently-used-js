@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //跨浏览器获取可视窗口大小
+        function getWindow() {
+            if (typeof window.innerWidth != 'undefined') {
+                return {
+                    width: window.innerWidth,
+                    height: window.innerHeight
+                }
+            } else {
+                return {
+                    width: document.documentElement.clientWidth,
+                    height: document.documentElement.clientHeight
+                }
+            }
+        },
+    </script>
+</body>
+
+</html>

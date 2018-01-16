@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>防止按钮重复提交</title>
+</head>
+
+<body>
+    <!--sdfsdaf-->
+    <p>数 1：<input type="text" id="one" /></p>
+    <p>数 2：<input type="text" id="two" /></p>
+    <p>结果：<input type="text" id="result" /></p>
+    <button id="jiafa">加法</button>
+    <button id="jianfa">减法</button>
+    <button id="chengfa">乘法</button>
+    <button id="chufa">除法</button>
+    <script>
+        var one = null,
+            two = null,
+            result = null,
+            jiafa = null,
+            jianfa = null,
+            chengfa = null,
+            chufa = null,
+            oneNum = 0,
+            towNum = 0;
+        window.onload = function() {
+            doc = document;
+            one = doc.getElementById("one");
+            two = doc.getElementById("two");
+            result = doc.getElementById("result");
+            jiafa = doc.querySelector("#jiafa");
+            jianfa = doc.querySelector("#jianfa");
+            chengfa = doc.querySelector("#chengfa");
+            chufa = doc.querySelector("#chufa");
+
+            oneNum = parseInt(one.value);
+            twoNum = parseInt(two.value);
+            jiafa.onclick = function() {
+                result.value = parseInt(oneNum + twoNum);
+            }
+            jianfa.onclick = function() {
+                result.value = parseInt(oneNum - twoNum);
+            }
+            chengfa.onclick = function() {
+                result.value = parseInt(oneNum * twoNum);
+            }
+
+            chufa.onclick = function() {
+                result.value = parseInt(oneNum / twoNum);
+            }
+        };
+    </script>
+</body>
+
+</html>

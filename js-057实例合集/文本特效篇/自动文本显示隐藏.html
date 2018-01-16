@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自动文本显示和隐藏</title>
+    <link rel="stylesheet" href="../common/common.css">
+</head>
+<body>
+<h1>文本篇--自动文本显示和隐藏</h1>
+<h2 id="js-show-text"></h2>
+<script>
+    window.onload = function () {
+        var doc = document;
+        var text = doc.getElementById("js-show-text");
+        var flag = true;
+        //生成随机文本
+        function randomText() {
+            if (flag) {
+                text.style.visibility = "visible";
+            } else {
+                text.style.visibility = "hidden";
+            }
+            flag = !flag;
+            var texts = ["谁家的", "呵呵", "哈哈", "恩恩额", "这是", "nis"];
+            var textIndex = Math.floor(Math.random() * texts.length);
+            text.innerHTML = texts[textIndex];
+            setTimeout(randomText, 1000);
+        }
+
+        randomText();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function formatDate(now) {
+            var y = now.getFullYear();
+            var m = now.getMonth() + 1; // 注意js里的月要加1
+            var d = now.getDate();
+            var h = now.getHours();
+            var M = now.getMinutes();
+            var s = now.getSeconds();
+
+            return y + "-" + m + "-" + d + " " + h + ":" + M + ":" + s;
+        }
+
+        var nowDate = new Date(2016, 5, 13, 19, 18, 30, 20);
+
+        console.log(nowDate.getTime()); // 获得当前毫秒数: 1465816710020
+        console.log(formatDate(nowDate));
+    </script>
+</body>
+
+</html>

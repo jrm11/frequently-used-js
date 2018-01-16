@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>事件处理</title>
+<meta charset="utf-8" />
+
+</head>
+<body>
+ 	<form>
+		姓名:<input name="username"/><br>
+		密码:<input type="password" name="pwd"/><br>
+    爱好:<input type="checkbox" name="favs" value="running"/>跑步
+          <input type="checkbox" name="favs" value="swimming"/>游泳
+          <input type="checkbox" name="favs" value="basketball"/>篮球
+          <br>
+		<input type="submit"/>
+	</form>
+  <script>
+    // 将地址栏后面？的值转为对象的形式
+    function search2Object(){
+        var obj = {};
+        if(location.search){
+            var str = location.search.slice(1).split("&");
+            console.log(str);
+            for(var s of str){
+                var subs = s.split("=");
+                console.log(subs[0]);
+                if(obj[subs[0]]===undefined){
+                    obj[subs[0]] = subs[1];
+                }
+            }
+        }
+        return obj;
+    }
+    var obj = search2Object();
+    console.log(obj);
+  </script>
+</body>
+</html>

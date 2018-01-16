@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #dataTable {
+            border: 1px solid #aaaaaa;
+            width: 80%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #aaaaaa;
+            text-align: center;
+            padding: 3px;
+        }
+
+        thead tr {
+            background-color: #d0d0d0;
+        }
+        tbody tr:hover{
+            background:#e0e0e0;
+        }
+
+        .even {
+            background-color: #f6f6f6;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>创建动态表格</h2>
+    <button onclick="loadData(data)">加载数据</button><br/><br/>
+
+    <table id="dataTable">
+        <tbody></tbody>
+        <tr>
+            <td>暂无数据</td>
+        </tr>
+    </table>
+    <!-- <br/> 提示： -->
+    <!-- <br/> (1)点击“加载数据”按钮可以加载任何符合一定格式要求的数据 -->
+    <!-- <br/> (2)待加载数据中列名、列的数量、记录行的都是都是可变的 -->
+    <!-- <br/> (3)显示出来的数据隔行变色 (4)记录行鼠标悬停时变色显示 -->
+    <script>
+        // 模拟从服务器获取到的具体特定格式的JSON数据
+        var data = {
+            "colNames": ["订单编号", "订单日期", "订单总额", "收货人", "订单状态"],
+            "rows": [
+                [9319081, '2015-01-16 11:04', 3200, '张大力', '已签收'],
+                [9319082, '2015-01-15 12:22', 4300, '王小玲', '已签收'],
+                [9319083, '2015-01-14 13:12', 98.5, '张大力', '派货中'],
+                [9319084, '2015-01-13 14:52', 128.3, '张大力', '已签收'],
+                [9319085, '2015-01-12 15:10', 33.5, '张大力', '派货中'],
+                [9319086, '2015-01-11 16:77', 9800, '王小玲', '待付款']
+            ]
+        };
+
+        // 加载任意规格形式数据的表格
+        function loadData(data) {
+            if (data) {
+                var table = document.getElementById("dataTable");
+                clear(table);
+                createTHead(table, data.colNames);
+                createTBody(table, data.rows);
+            }
+        }
+
+        //只要实参中有数据，则删除表中原有内容
+        function clear(table){
+            while(table.firstChild){
+                table.removeChild(table.firstChild);
+            }
+        }
+
+        //创建第一行，即表头
+        function createTHead(table, cols) {
+            // 创建表头
+            var thead = table.createTHead();
+            // 创建tr然后添加都表头
+            var tr = thead.insertRow();
+            for(var i = 0; i < cols.length; i++){
+                var th = document.createElement("th");
+                th.innerHTML = cols[i];
+                tr.appendChild(th);
+            }
+
+        }
+
+        //创建表中的记录行
+        function createTBody(table, rows) {
+            // 创建tobody
+            var tbody = document.createElement("tbody");
+            // 将tbody添加到table
+            table.appendChild(tbody);
+            for(var i = 0; i < rows.length; i++){
+                // 将tr加入tbody中
+                var tr = tbody.insertRow();
+                // 实现隔行变色
+                if(i % 2 ==1){
+                    tr.className = "even";
+                }
+
+                for(var j = 0; j < rows[i].length; j++){
+                    var td = tr.insertCell();
+                    td.innerHTML = rows[i][j];
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

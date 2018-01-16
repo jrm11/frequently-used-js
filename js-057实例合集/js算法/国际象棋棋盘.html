@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table {
+            border: 1px solid #0000cc;
+        }
+
+        td {
+            width: 50px;
+            height: 50px;
+        }
+
+        .td01 {
+            background: #fff;
+        }
+
+        .td02 {
+            background: #0000cc;
+        }
+    </style>
+</head>
+<body>
+<script>
+    var str = "<table cellpadding='0' cellspacing='0'>";
+    for (var i = 0; i <= 10; i++) {
+        str += "<tr>";
+        for (var j = 0; j <= 20; j++) {
+            if ((i+j)% 2 != 0) {
+                str += "<td class='td01'></td>";
+            } else {
+                str += "<td class='td02'></td>";
+            }
+        }
+
+        str += "</tr>";
+    }
+
+    str += "</table>";
+    document.write(str);
+</script>
+</body>
+</html>

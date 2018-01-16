@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function sqrtNum() {
+        for(var i = 0; i< 100; i++){
+            var j = Math.sqrt(i+100);
+
+            var k = Math.sqrt(i+268);
+            if(j*j == i+100 && k*k == i+268){
+                console.log(`这个数是${i}`);
+            }
+        }
+    }
+    sqrtNum();
+
+</script>
+</body>
+</html>

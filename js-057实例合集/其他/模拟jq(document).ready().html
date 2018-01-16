@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //模拟jquery$(document).ready(fn);
+        //使用惰性函数方式实现
+        function jq(fn) {
+            var doc = document;
+            if (doc.addEventListener) {
+                doc.addEventListener("DOMContentLoaded", function() {
+                    doc.removeEventListener("DOMContentLoaded", arguments.callee, false);
+                    fn();
+                }, false);
+            } else if (doc.attachEvent) {
+                doc.attachEvent("onreadystatechange", function() {
+                    if (doc.readyState == "complete") {
+                        doc.detachEvent("onreadystatechange", arguments.callee);
+                        fn();
+                    }
+                })
+            }
+        }
+
+        jq(function(){
+            console.log(doc);
+        });
+    </script>
+</body>
+
+</html>

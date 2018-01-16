@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算输入的日期是第几天</title>
+    <style>
+        input {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+年:<input type="text" id="year"><br/>
+月:<input type="text" id="month"><br/>
+日:<input type="text" id="day"><br/>
+<input type="button" id="sum" value="计算">
+<script>
+    /*
+     * 1.获取输入的年、月、日
+     * 2.判断输入的值是否符合正确格式
+     * 3.计算输入的月份总天数，其中闰年月份为29天，平年为28天
+     * 4.输出天数
+     *
+     * */
+    var doc = document;
+    let year, month, day, sum;
+    function jisuan() {
+        year = doc.querySelector("#year");
+        month = doc.querySelector("#month");
+        day = doc.querySelector("#day");
+        sum = doc.querySelector("#sum");
+        sum.onclick = function () {
+            let yy = year.value;
+            let mm = month.value;
+            let dd = day.value;
+//            console.log(yy);
+//            console.log(mm);
+//            console.log(dd);
+//            console.log("click");
+
+            if (checkNum(yy, 1, 3000) && (checkNum(mm, 1, 12)) && checkNum(dd, 1, 31)) {
+                let cur_year = parseInt(yy, 10);
+                let cur_mm = parseInt(mm, 10);
+                let cur_day = parseInt(dd, 10);
+//                console.log(cur_year);
+//                console.log(cur_mm);
+//                console.log(cur_day);
+                let sum, leap;
+                switch (cur_mm) {
+                    case 1:
+                        sum = 0;
+                        break;
+
+                    case 2:
+                        sum = 31;
+                        break;
+
+                    case 3:
+                        sum = 59;
+                        break;
+
+                    case 4:
+                        sum = 90;
+                        break;
+
+                    case 5:
+                        sum = 120;
+                        break;
+
+                    case 6:
+                        sum = 151;
+                        break;
+
+                    case 7:
+                        sum = 181;
+                        break;
+
+                    case 8:
+                        sum = 212;
+                        break;
+
+                    case 9:
+                        sum = 243;
+                        break;
+
+                    case 10:
+                        sum = 273;
+                        break;
+
+                    case 11:
+                        sum = 304;
+                        break;
+
+                    case 12:
+                        sum = 334;
+                        break;
+
+                    default:
+                        console.log("data error");
+                        break;
+                }
+                sum = sum + cur_day;
+                if (cur_year % 4 == 0 && cur_year % 100 != 0 || cur_year % 400 == 0) {
+                    leap = 1;
+                } else {
+                    leap = 0;
+                }
+
+                if (leap == 1 && cur_mm > 2) {
+                    sum++;
+                    console.log(`该年是第${sum}天`);
+                } else {
+                    console.log(`该年是第${sum}天`);
+                }
+            }
+        };
+    }
+
+    function checkNum(str, min, max) {
+        if (str == "" || str < 0) {
+            alert("请输入正确的值");
+            return false;
+        }
+
+        let val = parseInt(str, 10);
+        if (val < min || val > max) {
+            alert(`请输入数值${min}到${max}的值`);
+            return false;
+        }
+        return true;
+    }
+
+    jisuan();
+</script>
+</body>
+</html>
