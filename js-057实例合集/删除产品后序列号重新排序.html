@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,width=device-width"/>
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+    <meta content="telephone=no" name="format-detection"/>
+    <title>Title</title>
+    <style type="text/css">
+        table.gridtable {
+            font-family: verdana, arial, sans-serif;
+            font-size: 11px;
+            color: #333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+        }
+
+        table.gridtable th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+
+        table.gridtable td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+<table class="gridtable">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody class="j-tbody">
+    <tr>
+        <td class="item-num">1</td>
+        <td>明明</td>
+        <td>
+            <button class="j-btn-del">删除</button>
+        </td>
+    </tr>
+    <tr>
+        <td class="item-num">2</td>
+        <td>明明</td>
+        <td>
+            <button class="j-btn-del">删除</button>
+        </td>
+    </tr>
+    <tr>
+        <td class="item-num">3</td>
+        <td>明明</td>
+        <td>
+            <button class="j-btn-del">删除</button>
+        </td>
+    </tr>
+    <tr>
+        <td class="item-num">4</td>
+        <td>明明</td>
+        <td>
+            <button class="j-btn-del">删除</button>
+        </td>
+    </tr>
+    <tr>
+        <td class="item-num">5</td>
+        <td>明明</td>
+        <td>
+            <button class="j-btn-del">删除</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script src="jquery-3.2.1.min.js">
+
+</script>
+<script>
+    $(function () {
+        "use strict"
+        $(document).on("click", ".j-btn-del", function () {
+//            点击删除按钮是 找到当前按钮的父元素的父元素 即<tr>标签 然后调用remove 删除产品
+            $(this).parent().parent().remove()
+//            找到删除后的所有<tr>
+            let pLen = $(".j-tbody tr").length;
+//遍历所有<tr>
+            for (let i = 0; i < pLen; i++) {
+
+                $(".item-num").eq(i).html(i + 1);
+            }
+        })
+    })
+</script>
+</body>
+</html>
