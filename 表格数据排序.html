@@ -1,0 +1,235 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>JS实现点击表头表格自动排序（含数字、字符串、日期）</title>
+    <style>
+        #tableSort {
+            moz-user-select: -moz-none;
+            -moz-user-select: none;
+            -o-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+            margin: 18px 0;
+        }
+
+        #tableSort th {
+            cursor: pointer;
+            background: #eee
+        }
+
+        #tableSort tr:nth-child(even) {
+            background: #f9f9f9
+        }
+
+        #tableSort th, #tableSort td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .up-tranglte, .down-tranglte {
+            width: 0;
+            height: 0;
+            transition: .3s;
+            display: block;
+        }
+
+        .up-tranglte {
+            border-bottom: 8px solid #0099ff;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            margin-bottom: 3px;
+        }
+
+        .up-tranglte:hover {
+            border-bottom: 8px solid #1f5eff;
+        }
+
+        .down-tranglte {
+            border-top: 8px solid #0099ff;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+        }
+
+        .down-tranglte:hover {
+            border-top: 8px solid #1f5eff;
+        }
+
+        .di {
+            display: inline-block;
+        }
+
+        .clear:after {
+            content: "";
+            display: table-cell;
+            clear: both;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<table id="tableSort">
+    <thead>
+    <tr>
+        <th  class="clear text-center">
+            <div class="di" data-type="num">工号</div>
+            <div class="di">
+                <i class="up-tranglte j-up"></i>
+                <i class="down-tranglte j-down"></i>
+            </div>
+        </th>
+        <th  class="clear text-center">
+            <div class="di" data-type="string">姓名</div>
+            <div class="di">
+                <i class="up-tranglte j-up"></i>
+                <i class="down-tranglte j-down"></i>
+            </div>
+        </th>
+        <th  class="clear text-center">
+            <div class="di" data-type="string">性别</div>
+            <div class="di">
+                <i class="up-tranglte j-up"></i>
+                <i class="down-tranglte j-down"></i>
+            </div>
+        </th>
+        <th  class="clear text-center">
+            <div class="di" data-type="date">时间</div>
+            <div class="di">
+                <i class="up-tranglte j-up"></i>
+                <i class="down-tranglte j-down"></i>
+            </div>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="item-num">07</td>
+        <td>aaaa</td>
+        <td>男</td>
+        <td>2012-12-12</td>
+    </tr>
+    <tr>
+        <td class="item-num">03</td>
+        <td>mmmm</td>
+        <td>女</td>
+        <td>2013-12-16</td>
+    </tr>
+    <tr>
+        <td class="item-num">01</td>
+        <td>cccc</td>
+        <td>男</td>
+        <td>2014-12-12</td>
+    </tr>
+    <tr>
+        <td class="item-num">04</td>
+        <td>ffff</td>
+        <td>女</td>
+        <td>2015-12-12</td>
+    </tr>
+    <tr>
+        <td class="item-num">02</td>
+        <td>bbbb</td>
+        <td>男</td>
+        <td>2016-12-18</td>
+    </tr>
+    <tr>
+        <td class="item-num">1036</td>
+        <td>ssss</td>
+        <td>女</td>
+        <td>2008-10-07</td>
+    </tr>
+    <tr>
+        <td class="item-num">052</td>
+        <td>tttt</td>
+        <td>男</td>
+        <td>2012-07-22</td>
+    </tr>
+    </tbody>
+</table>
+<script>
+    ;(function () {
+        "use strict";
+        /**
+         *  1.
+         * @type {NodeListOf<Element>}
+         */
+        const upSort = document.querySelectorAll(".j-up");
+        const downSort = document.querySelectorAll(".j-down");
+        const tbody = document.querySelector('#tableSort').tBodies[0];
+        const td = tbody.rows;
+        for (let i = 0, len = upSort.length; i < len; i++) {
+            // 升序
+            upSort[i].onclick = function () {
+                // 获取当前父元素的上一个元素的属性指
+                sort(this.parentNode.previousElementSibling.getAttribute('data-type'), i, 1);
+            };
+        }
+
+        for (let i = 0, len = downSort.length; i < len; i++) {
+            // 降序
+            downSort[i].onclick = function () {
+                sort(this.parentNode.previousElementSibling.getAttribute('data-type'), i, 0);
+            }
+        }
+
+        function sort(str, n, num) {
+            const arr = [];
+            for (let i = 0; i < td.length; i++) {
+                arr.push(td[i]);
+            }
+            arr.sort(function (a, b) {
+                let carparmA = a.cells[n].innerHTML;
+                let carparmB = b.cells[n].innerHTML;
+                if (num === 1) {
+                    return sortUp(str, carparmA, carparmB);
+                } else if(num === 0) {
+                    return sortDown(str, carparmA, carparmB);
+                }
+            });
+            for (let i = 0; i < arr.length; i++) {
+                tbody.appendChild(arr[i]);
+            }
+        }
+
+        function sortUp(str, a, b) {
+            switch (str) {
+                case 'num':
+                    return a - b;
+                    break;
+                case 'string':
+                    return a.localeCompare(b);
+                    break;
+                default:
+                    return new Date(a.split('-').join('/')).getTime() - new Date(b.split('-').join('/')).getTime();
+            }
+        }
+
+        function sortDown(str, a, b) {
+            switch (str) {
+                case 'num':
+                    return b-a;
+                    break;
+                case 'string':
+                    return b.localeCompare(a);
+                    break;
+                default:
+                    return new Date(b.split('-').join('/')).getTime() - new Date(a.split('-').join('/')).getTime();
+            }
+        }
+    })();
+</script>
+
+</body>
+</html>
