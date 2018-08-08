@@ -1,6 +1,6 @@
 /**
  * @desc   格式化${startTime}距现在的已过时间
- * @param  {Date} startTime 
+ * @param  {Date} startTime   毫秒数
  * @return {String}
  */
 function formatPassTime(startTime) {
@@ -17,6 +17,7 @@ function formatPassTime(startTime) {
     if (hour) return hour + "小时前"
     if (min) return min + "分钟前"
     else return '刚刚'
+
 }
 
 module.exports = formatPassTime
