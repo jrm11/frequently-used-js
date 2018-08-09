@@ -5,10 +5,10 @@
  * @return {String}
  */
 function formatRemainTime(endTime) {
-    var startDate = new Date(); //开始时间
-    var endDate = new Date(endTime); //结束时间
-    var t = endDate.getTime() - startDate.getTime(); //时间差
-    var d = 0,
+    let startDate = new Date(); //开始时间
+    let endDate = new Date(endTime); //结束时间
+    let t = endDate.getTime() - startDate.getTime(); //时间差
+    let d = 0,
         h = 0,
         m = 0,
         s = 0;

@@ -26,7 +26,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 400px;
-            height: 200px;
+            height: 250px;
             background: #fff;
             border-radius: 10px;
             padding: 10px;
@@ -63,7 +63,7 @@
         }
 
         .randomTxt {
-            height: 150px;
+            height: 200px;
             font-size: 24px;
             color: #00aacc;
             word-wrap: break-word;
@@ -90,8 +90,9 @@
         let randomText = document.querySelector(".js-randomTxt");
         let btnRandom = document.querySelector(".js-btn-random");
         let bg = document.querySelector(".js-bg");
-        let randomC = randomColor();
+        let randomC ="";
         btn.onclick = function () {
+            randomC = randomColor();
             let _this = this;
             f(_this);
         };
@@ -102,6 +103,9 @@
             btnRandom.style.background = randomC;
             _this.style.background = randomC;
             randomText.innerHTML = randomTxt();
+            console.log(randomColor());
+            console.log(randomTxt());
+
         }
 
         // 随机文本
